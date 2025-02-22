@@ -1,6 +1,7 @@
 import requests
 from isodate import parse_duration
 import pandas as pd
+import json  # Import the json module
 
 # Function to read video IDs from a file
 def read_video_ids_from_file(file_path):
@@ -113,3 +114,9 @@ df = pd.DataFrame(videos_data)
 excel_file_name = 'video_data.xlsx'
 df.to_excel(excel_file_name, index=False, engine='openpyxl')
 print(f"Data has been saved to {excel_file_name}")
+
+# Save video data to a JSON file
+json_file_name = 'video_data.json'
+with open(json_file_name, 'w') as json_file:
+    json.dump(videos_data, json_file, indent=4)  # Use indent=4 for pretty-printing
+print(f"Data has been saved to {json_file_name}")
